@@ -18,11 +18,11 @@ public class USACO {
         pasture[i][x] = sys.nextInt();
       }
     }
-    for (int i = 0; i<R; i++) {
-      for (int x = 0; x<C;x++) {
-        System.out.print(pasture[i][x] + " ");
+    int start = 0; int down = 0;
+    for (int i = 0; i<N; i++) {
+      for (int x = 0; x<3;x++) {
+
       }
-      System.out.print("\n");
     }
     return 0;
   }
