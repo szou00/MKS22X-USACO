@@ -18,10 +18,25 @@ public class USACO {
         pasture[i][x] = sys.nextInt();
       }
     }
-    int start = 0; int down = 0;
+    int max = 0;
     for (int i = 0; i<N; i++) {
-      for (int x = 0; x<3;x++) {
-
+      int row = sys.nextInt()-1;
+      int col = sys.nextInt()-1;
+      int down = sys.nextInt();
+      for (int y = 0; y<3;y++) {
+        for (int z = 0; z<3; z++) {
+          if (max < pasture[row+y][col+z]) {
+            max = pasture[row+y][col+z];
+          }
+        }
+      }
+      max -= down;
+      for (int y = 0; y<3;y++) {
+        for (int z = 0; z<3; z++) {
+          if (pasture[row+y][col+z] < max) {
+            pasture[row+y][col+z] = max;
+          }
+        }
       }
     }
     return 0;
