@@ -12,24 +12,19 @@ public class USACO {
     int[][] pasture = new int[R][C];
     int E = sys.nextInt();
     int N = sys.nextInt();
-    System.out.println(R+ " " + C + " " + E + " " + N);
+
     for (int i = 0; i<R; i++) {
       for (int x = 0; x<C;x++) {
         pasture[i][x] = sys.nextInt();
       }
     }
-    for (int i = 0; i<R; i++) {
-      for (int x = 0; x<C;x++) {
-        System.out.print(pasture[i][x] + " ");
-      }
-      System.out.print("\n");
-    }
+
     for (int i = 0; i<N; i++) {
       int row = sys.nextInt()-1;
       int col = sys.nextInt()-1;
       int down = sys.nextInt();
       int max = 0;
-      System.out.println(down);
+
       for (int y = 0; y<3;y++) {
         for (int z = 0; z<3; z++) {
           if (max < pasture[row+y][col+z]) {
@@ -59,21 +54,13 @@ public class USACO {
         }
       }
     }
-    System.out.println("depth: " + depth);
 
-    System.out.println("new board: ");
-    for (int i = 0; i<R; i++) {
-      for (int x = 0; x<C;x++) {
-        System.out.print(pasture[i][x] + " ");
-      }
-      System.out.print("\n");
-    }
     return (depth * 72 * 72);
   }
 
   public static void main(String[] args) {
     try {
-      System.out.println(bronze("makelake.in"));
+      System.out.println(bronze("makelake.5.in"));
     }
     catch (FileNotFoundException e){
       System.out.println("FileNotFoundException");
