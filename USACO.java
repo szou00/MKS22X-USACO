@@ -85,7 +85,7 @@ public class USACO {
     int t = Integer.parseInt(line.substring(4,5));
     // System.out.println("rows: " + rows + " cols: " + cols + " time: " + t);
 
-    //creating more variables
+    //creating a 2D array to represent pasture
     int[][] pasture = new int[rows][cols];
     for (int r=0;r<rows;r++) {
       line = sys.nextLine();
@@ -99,6 +99,15 @@ public class USACO {
       }
     }
 
+    //getting the last line (start and end)
+    line = sys.nextLine();
+    int startr = Integer.parseInt(line.substring(0,1));
+    int startc = Integer.parseInt(line.substring(2,3));
+    int endr = Integer.parseInt(line.substring(3,4));
+    int endc = Integer.parseInt(line.substring(4,5));
+    System.out.println(startr + " " + startc + " " + endr + " " + endc + " ");
+
+    //printing for debugging purposes
     System.out.println("pasture: ");
     for (int i = 0; i<rows; i++) {
       for (int x = 0; x<cols;x++) {
