@@ -46,6 +46,21 @@ public class USACO {
         }
       }
     }
+
+    int depth = 0;
+    for (int i = 0; i<R; i++) {
+      for (int x = 0; x<C;x++) {
+        if (pasture[i][x] < E) {
+          pasture[i][x] = E-pasture[i][x];
+          depth += pasture[i][x];
+        }
+        else {
+          pasture[i][x] = 0;
+        }
+      }
+    }
+    System.out.println("depth: " + depth);
+
     System.out.println("new board: ");
     for (int i = 0; i<R; i++) {
       for (int x = 0; x<C;x++) {
@@ -53,12 +68,12 @@ public class USACO {
       }
       System.out.print("\n");
     }
-    return 0;
+    return (depth * 72 * 72);
   }
 
   public static void main(String[] args) {
     try {
-      bronze("makelake.in");
+      System.out.println(bronze("makelake.in"));
     }
     catch (FileNotFoundException e){
       System.out.println("FileNotFoundException");
