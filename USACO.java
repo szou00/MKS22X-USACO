@@ -18,6 +18,12 @@ public class USACO {
         pasture[i][x] = sys.nextInt();
       }
     }
+    for (int i = 0; i<R; i++) {
+      for (int x = 0; x<C;x++) {
+        System.out.print(pasture[i][x] + " ");
+      }
+      System.out.print("\n");
+    }
     int max = 0;
     for (int i = 0; i<N; i++) {
       int row = sys.nextInt()-1;
@@ -30,14 +36,27 @@ public class USACO {
           }
         }
       }
+      System.out.println("old max: " + max);
       max -= down;
+      System.out.println("new max " + max);
       for (int y = 0; y<3;y++) {
         for (int z = 0; z<3; z++) {
-          if (pasture[row+y][col+z] < max) {
+          System.out.print("old num: " + pasture[row+y][col+z] + " ");
+          if (pasture[row+y][col+z] > max) {
+            System.out.print("row: " + row+y + "col " + col+z);
             pasture[row+y][col+z] = max;
+            System.out.print(" lowered: " + pasture[row+y][col+z]);
+            System.out.print("\n");
           }
         }
       }
+    }
+    System.out.println("new board: ");
+    for (int i = 0; i<R; i++) {
+      for (int x = 0; x<C;x++) {
+        System.out.print(pasture[i][x] + " ");
+      }
+      System.out.print("\n");
     }
     return 0;
   }
