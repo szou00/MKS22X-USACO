@@ -37,17 +37,11 @@ public class USACO {
           }
         }
       }
-      // System.out.println("old max: " + max);
       max -= down;
-      // System.out.println("new max " + max);
       for (int y = 0; y<3;y++) {
         for (int z = 0; z<3; z++) {
-          // System.out.print("old num: " + pasture[row+y][col+z] + " ");
           if (pasture[row+y][col+z] > max) {
-            // System.out.print("row: " + row+y + "col " + col+z);
             pasture[row+y][col+z] = max;
-            // System.out.print(" lowered: " + pasture[row+y][col+z]);
-            // System.out.print("\n");
           }
         }
       }
