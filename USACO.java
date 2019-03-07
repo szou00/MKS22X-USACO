@@ -66,13 +66,56 @@ public class USACO {
       }
     }
 
-    //return the depth 
+    //return the depth
     return (depth * 72 * 72);
   }
 
+  //----------------------------------------------------------------------------
+
+  public static int silver(String filename) throws FileNotFoundException{
+
+    //opening a new file
+    File text = new File(filename);
+    Scanner sys = new Scanner(text);
+
+    //reading in the file
+    String line = sys.nextLine();
+    int rows = Integer.parseInt(line.substring(0,1));
+    int cols = Integer.parseInt(line.substring(2,3));
+    int t = Integer.parseInt(line.substring(4,5));
+    // System.out.println("rows: " + rows + " cols: " + cols + " time: " + t);
+
+    //creating more variables
+    int[][] pasture = new int[rows][cols];
+    for (int r=0;r<rows;r++) {
+      line = sys.nextLine();
+      for (int c=0;c<cols;c++) {
+        if (line.charAt(c) != '*') {
+          pasture[r][c] = 0;
+        }
+        else {
+          pasture[r][c] = -1;
+        }
+      }
+    }
+
+    System.out.println("pasture: ");
+    for (int i = 0; i<rows; i++) {
+      for (int x = 0; x<cols;x++) {
+        System.out.print(pasture[i][x] + " ");
+      }
+      System.out.print("\n");
+}
+
+    return 0;
+  }
+
+  //----------------------------------------------------------------------------
+
   public static void main(String[] args) {
     try {
-      System.out.println(bronze("makelake.5.in"));
+      //System.out.println(bronze("makelake.5.in"));
+        silver("ctravel.1.in");
     }
     catch (FileNotFoundException e){
       System.out.println("FileNotFoundException");
