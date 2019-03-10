@@ -107,6 +107,21 @@ public class USACO {
     int endc = Integer.parseInt(line.substring(6,7))-1;
     System.out.println(startr + " " + startc + " " + endr + " " + endc + " ");
 
+    //figuring out the moves
+    int[][] moves = {{-1,0},{1,0},{0,-1},{0,1}}; //possible ways the cow can move
+    int sum; int newR = startr; int newC = startc;
+    while (t != 0) {
+      for (int m = 0; m<moves.length;m++) {
+        newR += moves[i][0];
+        newC += moves[i][1];
+        if (newR < rows && newC < cols && pasture[newR][newC] != -1) {
+          if (newR == endr && newC == endC) {
+            sum+=1;
+          }
+        }
+      }
+    }
+
     //printing for debugging purposes
     System.out.println("pasture: ");
     for (int i = 0; i<rows; i++) {
