@@ -103,8 +103,8 @@ public class USACO {
     line = sys.nextLine();
     int startr = Integer.parseInt(line.substring(0,1));
     int startc = Integer.parseInt(line.substring(2,3));
-    int endr = Integer.parseInt(line.substring(3,4));
-    int endc = Integer.parseInt(line.substring(4,5));
+    int endr = Integer.parseInt(line.substring(4,5));
+    int endc = Integer.parseInt(line.substring(6,7));
     System.out.println(startr + " " + startc + " " + endr + " " + endc + " ");
 
     //printing for debugging purposes
