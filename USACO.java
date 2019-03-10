@@ -101,10 +101,10 @@ public class USACO {
 
     //getting the last line (start and end)
     line = sys.nextLine();
-    int startr = Integer.parseInt(line.substring(0,1));
-    int startc = Integer.parseInt(line.substring(2,3));
-    int endr = Integer.parseInt(line.substring(4,5));
-    int endc = Integer.parseInt(line.substring(6,7));
+    int startr = Integer.parseInt(line.substring(0,1))-1;
+    int startc = Integer.parseInt(line.substring(2,3))-1;
+    int endr = Integer.parseInt(line.substring(4,5))-1;
+    int endc = Integer.parseInt(line.substring(6,7))-1;
     System.out.println(startr + " " + startc + " " + endr + " " + endc + " ");
 
     //printing for debugging purposes
