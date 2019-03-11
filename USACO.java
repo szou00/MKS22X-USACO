@@ -110,7 +110,31 @@ public class USACO {
     //figuring out the moves
     pasture[startr][startc] = 1;
     while (t!=0) {
-      pasture = silver(pasture);
+      int[][] moves = {{-1,0},{1,0},{0,-1},{0,1}}; //possible ways the cow can move
+      // int rows = pasture.length;int cols = pasture[0].length;
+      int[][] field = new int[pasture.length][pasture[0].length];
+      int sum=0; int newR = 0; int newC = 0;
+      for (int r = 0; r<pasture.length;r++) {
+          for (int c= 0; c<pasture[0].length;c++) {
+            if(pasture[r][c] == -1){//if a tree, copy over
+              field[r][c] = -1;
+            }
+            else {
+              sum = 0;
+              for (int m = 0; m<moves.length;m++) {
+                newR = r + moves[m][0];
+                newC = c + moves[m][1];
+                if (newR < pasture.length && newC < pasture[0].length && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
+                  // System.out.println("went thru: row is " + newR + " col is " + newC);
+                  sum+=pasture[newR][newC];
+                }
+                field[r][c] = sum;
+              }
+            }
+          }
+        }
+      pasture = field;
+      t-=1;
     }
 
     //printing for debugging purposes
@@ -127,6 +151,7 @@ public class USACO {
 
   public static int[][] silver(int[][] pasture) {
     int[][] moves = {{-1,0},{1,0},{0,-1},{0,1}}; //possible ways the cow can move
+    // int rows = pasture.length;int cols = pasture[0].length;
     int[][] field = new int[pasture.length][pasture[0].length];
     int sum=0; int newR = 0; int newC = 0;
     for (int r = 0; r<pasture.length;r++) {
