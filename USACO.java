@@ -108,17 +108,21 @@ public class USACO {
     System.out.println(startr + " " + startc + " " + endr + " " + endc + " ");
 
     //figuring out the moves
+    pasture[startr][startc] = 1;
     int[][] moves = {{-1,0},{1,0},{0,-1},{0,1}}; //possible ways the cow can move
-    int sum=0; int newR = startr; int newC = startc;
+    int sum=0; int newR = 0; int newC = 0;
     while (t != 0) {
       for (int r = 0; r<rows;r++) {
         for (int c= 0; c<cols;c++) {
-          for (int m = 0; m<moves.length;m++) {
-            newR += moves[m][0];
-            newC += moves[m][1];
-            if (newR < rows && newC < cols && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
-              // System.out.println("went thru: row is " + newR + " col is " + newC);
-              pasture[newR][newC] += 1;
+          if (pasture[r][c]!= -1) {
+            for (int m = 0; m<moves.length;m++) {
+              newR = r + moves[m][0];
+              newC = c + moves[m][1];
+              if (newR < rows && newC < cols && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
+                // System.out.println("went thru: row is " + newR + " col is " + newC);
+                pasture[r][c] += 1;
+              }
+              pasture[r][c] = sum;
             }
           }
         }
