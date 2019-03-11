@@ -110,25 +110,37 @@ public class USACO {
     //figuring out the moves
     pasture[startr][startc] = 1;
     int[][] moves = {{-1,0},{1,0},{0,-1},{0,1}}; //possible ways the cow can move
-    int sum=0; int newR = 0; int newC = 0;
-    while (t != 0) {
-      for (int r = 0; r<rows;r++) {
-        for (int c= 0; c<cols;c++) {
-          if (pasture[r][c]!= -1) {
-            for (int m = 0; m<moves.length;m++) {
-              newR = r + moves[m][0];
-              newC = c + moves[m][1];
-              if (newR < rows && newC < cols && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
-                // System.out.println("went thru: row is " + newR + " col is " + newC);
-                pasture[r][c] += 1;
-              }
-              pasture[r][c] = sum;
-            }
+    int sum=0; int newR = startr; int newC = startc;
+    while (t!=0) {
+      for (int m = 0; m<moves.length;m++) {
+        newR += moves[m][0];
+        newC += moves[m][1];
+        if (newR < rows && newC < cols && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
+          // System.out.println("went thru: row is " + newR + " col is " + newC);
+          if (newR == endr && newC = endC) {
+              sum +=1;
           }
         }
       }
-      t-=1;
     }
+    // while (t != 0) {
+    //   for (int r = 0; r<rows;r++) {
+    //     for (int c= 0; c<cols;c++) {
+    //       if (pasture[r][c]!= -1) {
+    //         for (int m = 0; m<moves.length;m++) {
+    //           newR = r + moves[m][0];
+    //           newC = c + moves[m][1];
+    //           if (newR < rows && newC < cols && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
+    //             // System.out.println("went thru: row is " + newR + " col is " + newC);
+    //             pasture[r][c] += 1;
+    //           }
+    //           pasture[r][c] = sum;
+    //         }
+    //       }
+    //     }
+    //   }
+    //   t-=1;
+    // }
 
     //printing for debugging purposes
     System.out.println("pasture: ");
@@ -140,6 +152,15 @@ public class USACO {
 }
 
     return 0;
+  }
+
+  public static void findSolutions(int[][] field, int r, int c, int er, int ec) {
+    if (r == er && c == ec) {
+      field[r][c] +=1;
+    }
+    for (int m = 0; m<moves.length;m++) {
+      findSolutions(field,r+moves[m][0],c+moves[m][1],er,ec);
+    }
   }
 
   //----------------------------------------------------------------------------
