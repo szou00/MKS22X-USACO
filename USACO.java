@@ -111,18 +111,19 @@ public class USACO {
     pasture[startr][startc] = 1;
     int[][] moves = {{-1,0},{1,0},{0,-1},{0,1}}; //possible ways the cow can move
     int sum=0; int newR = startr; int newC = startc;
-    while (t!=0) {
-      for (int m = 0; m<moves.length;m++) {
-        newR += moves[m][0];
-        newC += moves[m][1];
-        if (newR < rows && newC < cols && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
-          // System.out.println("went thru: row is " + newR + " col is " + newC);
-          if (newR == endr && newC = endC) {
-              sum +=1;
-          }
-        }
-      }
-    }
+    findSolutions(pasture,startr,startc,endr,endc,t);
+    // while (t!=0) {
+    //   for (int m = 0; m<moves.length;m++) {
+    //     newR += moves[m][0];
+    //     newC += moves[m][1];
+    //     if (newR < rows && newC < cols && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
+    //       // System.out.println("went thru: row is " + newR + " col is " + newC);
+    //       if (newR == endr && newC = endC) {
+    //           sum +=1;
+    //       }
+    //     }
+    //   }
+    // }
     // while (t != 0) {
     //   for (int r = 0; r<rows;r++) {
     //     for (int c= 0; c<cols;c++) {
@@ -151,16 +152,35 @@ public class USACO {
       System.out.print("\n");
 }
 
-    return 0;
+    return pasture[endr][endc];
   }
 
-  public static void findSolutions(int[][] field, int r, int c, int er, int ec) {
-    if (r == er && c == ec) {
-      field[r][c] +=1;
+  public static int findSolutions(int[][] field, int r, int c,int er, int ec, int t) {
+    int[][] moves = {{-1,0},{1,0},{0,-1},{0,1}};
+    if(t == 0){
+        field[r][c]++;
+      }else{
+        for(int m= 0; m < moves.length; m++){
+          if(r + moves[m][0]< field.length && c + moves[m][1] < field[0].length && r + moves[m][0] >= 0 && c + moves[m][1] >= 0 && field[r][c] != -1){
+            findSolutions(field, r + moves[m][0], c + moves[m][1], er, ec, t-1);
+          }
+        }
+      }
+      return field[er][ec];
     }
-    for (int m = 0; m<moves.length;m++) {
-      findSolutions(field,r+moves[m][0],c+moves[m][1],er,ec);
-    }
+
+    // int sum = 0;
+    // if ()
+    // if (r == er && c == ec) {
+    //   return 1;
+    // }
+    // if (r == field.length || c == field[0].length || r < 0 || c < 0) {
+    //   return 0;
+    // }
+    // for (int m = 0; m<moves.length;m++) {
+    //   sum+=findSolutions(field,r+moves[m][0],c+moves[m][1],er,ec);
+    // }
+    // return sum;
   }
 
   //----------------------------------------------------------------------------
