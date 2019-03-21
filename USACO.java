@@ -80,9 +80,10 @@ public class USACO {
 
     //reading in the file
     String line = sys.nextLine();
-    int rows = Integer.parseInt(line.substring(0,1));
-    int cols = Integer.parseInt(line.substring(2,3));
-    int t = Integer.parseInt(line.substring(4,5));
+    String[] firstline = line.split(" ");
+    int rows = Integer.parseInt(firstline[0]);
+    int cols = Integer.parseInt(firstline[1]);
+    int t = Integer.parseInt(firstline[2]);
     // System.out.println("rows: " + rows + " cols: " + cols + " time: " + t);
 
     //creating a 2D array to represent pasture
@@ -101,21 +102,22 @@ public class USACO {
 
     //getting the last line (start and end)
     line = sys.nextLine();
-    int startr = Integer.parseInt(line.substring(0,1))-1;
-    int startc = Integer.parseInt(line.substring(2,3))-1;
-    int endr = Integer.parseInt(line.substring(4,5))-1;
-    int endc = Integer.parseInt(line.substring(6,7))-1;
-    System.out.println(startr + " " + startc + " " + endr + " " + endc + " ");
+    String[] lastline = line.split(" ");
+    int startr = Integer.parseInt(lastline[0])-1;
+    int startc = Integer.parseInt(lastline[1])-1;
+    int endr = Integer.parseInt(lastline[2])-1;
+    int endc = Integer.parseInt(lastline[3])-1;
+    // System.out.println(startr + " " + startc + " " + endr + " " + endc + " ");
 
     //figuring out the moves
     pasture[startr][startc] = 1;
     while (t!=0) {
       int[][] moves = {{-1,0},{1,0},{0,-1},{0,1}}; //possible ways the cow can move
       // int rows = pasture.length;int cols = pasture[0].length;
-      int[][] field = new int[pasture.length][pasture[0].length];
+      int[][] field = new int[rows][cols];
       int sum=0; int newR = 0; int newC = 0;
-      for (int r = 0; r<pasture.length;r++) {
-          for (int c= 0; c<pasture[0].length;c++) {
+      for (int r = 0; r<rows;r++) {
+          for (int c= 0; c<cols;c++) {
             if(pasture[r][c] == -1){//if a tree, copy over
               field[r][c] = -1;
             }
@@ -124,7 +126,7 @@ public class USACO {
               for (int m = 0; m<moves.length;m++) {
                 newR = r + moves[m][0];
                 newC = c + moves[m][1];
-                if (newR < pasture.length && newC < pasture[0].length && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
+                if (newR < rows && newC < cols && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
                   // System.out.println("went thru: row is " + newR + " col is " + newC);
                   sum+=pasture[newR][newC];
                 }
@@ -138,64 +140,27 @@ public class USACO {
     }
 
     //printing for debugging purposes
-    System.out.println("pasture: ");
-    for (int i = 0; i<rows; i++) {
-      for (int x = 0; x<cols;x++) {
-        System.out.print(pasture[i][x] + " ");
-      }
-      System.out.print("\n");
-    }
+    // System.out.println("pasture: ");
+    // for (int i = 0; i<rows; i++) {
+    //   for (int x = 0; x<cols;x++) {
+    //     System.out.print(pasture[i][x] + " ");
+    //   }
+    //   System.out.print("\n");
+    // }
 
     return pasture[endr][endc];
   }
-
-  public static int[][] silver(int[][] pasture) {
-    int[][] moves = {{-1,0},{1,0},{0,-1},{0,1}}; //possible ways the cow can move
-    // int rows = pasture.length;int cols = pasture[0].length;
-    int[][] field = new int[pasture.length][pasture[0].length];
-    int sum=0; int newR = 0; int newC = 0;
-    for (int r = 0; r<pasture.length;r++) {
-        for (int c= 0; c<pasture[0].length;c++) {
-          if(pasture[r][c] == -1){//if a tree, copy over
-            field[r][c] = -1;
-          }
-          else {
-            sum = 0;
-            for (int m = 0; m<moves.length;m++) {
-              newR = r + moves[m][0];
-              newC = c + moves[m][1];
-              if (newR < pasture.length && newC < pasture[0].length && newR >= 0 && newC >= 0 && pasture[newR][newC] != -1) {
-                // System.out.println("went thru: row is " + newR + " col is " + newC);
-                sum+=pasture[newR][newC];
-              }
-              field[r][c] = sum;
-            }
-          }
-        }
-      }
-      return field;
-  }
-
-    // int sum = 0;
-    // if ()
-    // if (r == er && c == ec) {
-    //   return 1;
-    // }
-    // if (r == field.length || c == field[0].length || r < 0 || c < 0) {
-    //   return 0;
-    // }
-    // for (int m = 0; m<moves.length;m++) {
-    //   sum+=findSolutions(field,r+moves[m][0],c+moves[m][1],er,ec);
-    // }
-    // return sum;
-
 
   //----------------------------------------------------------------------------
 
   public static void main(String[] args) {
     try {
       //System.out.println(bronze("makelake.5.in"));
-        silver("ctravel.1.in");
+        System.out.println(silver("ctravel.1.in"));
+        System.out.println(silver("ctravel.2.in"));
+        System.out.println(silver("ctravel.3.in"));
+        System.out.println(silver("ctravel.4.in"));
+        System.out.println(silver("ctravel.5.in"));
     }
     catch (FileNotFoundException e){
       System.out.println("FileNotFoundException");
